@@ -44,9 +44,9 @@ class _MainDashBoardState extends State<MainDashBoard> {
   Future scrollTo({required int index}) async {
     _itemScrollController
         .scrollTo(
-            index: index,
-            duration: const Duration(seconds: 2),
-            curve: Curves.fastLinearToSlowEaseIn)
+        index: index,
+        duration: const Duration(seconds: 2),
+        curve: Curves.fastLinearToSlowEaseIn)
         .whenComplete(() {
       setState(() {
         menuIndex = index;
@@ -83,19 +83,19 @@ class _MainDashBoardState extends State<MainDashBoard> {
                     color: AppColors.bgColor2,
                     position: PopupMenuPosition.under,
                     constraints:
-                        BoxConstraints.tightFor(width: size.width * 0.9),
+                    BoxConstraints.tightFor(width: size.width * 0.9),
                     itemBuilder: (BuildContext context) => menuItems
                         .asMap()
                         .entries
                         .map(
                           (e) => PopupMenuItem(
-                            textStyle: AppTextStyles.headerTextStyle(),
-                            onTap: () {
-                              scrollTo(index: e.key);
-                            },
-                            child: Text(e.value),
-                          ),
-                        )
+                        textStyle: AppTextStyles.headerTextStyle(),
+                        onTap: () {
+                          scrollTo(index: e.key);
+                        },
+                        child: Text(e.value),
+                      ),
+                    )
                         .toList(),
                   ),
                 ],
@@ -122,15 +122,11 @@ class _MainDashBoardState extends State<MainDashBoard> {
                           borderRadius: BorderRadius.circular(100),
                           onHover: (value) {
                             setState(() {
-                              if (value) {
-                                menuIndex = index;
-                              } else {
-                                menuIndex = 0;
-                              }
+                              menuIndex = value ? index : 0;
                             });
                           },
                           child: buildNavBarAnimatedContainer(
-                              index, menuIndex == index ? true : false),
+                              index, menuIndex == index),
                         );
                       },
                     ),
